@@ -2,6 +2,10 @@
 
 A simple, interactive web application that uses a Bidirectional LSTM model trained on the IMDb dataset to classify movie reviews as positive or negative. Built with TensorFlow/Keras and deployed with Streamlit.
 
+Try it out online:  
+👉 [https://yuvaraj-imdb-app.streamlit.app/](https://yuvaraj-imdb-app.streamlit.app/)
+
+
 ---
 
 ## 📋 Project Overview
