@@ -6,16 +6,13 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Embedding, Bidirectional, LSTM, Dense, Dropout
 from tensorflow.keras.optimizers import Adam
 
-# 1) Load tokenizer
 with open('tokenizer.json','r') as f:
     tokenizer = tokenizer_from_json(f.read())
 
-# 2) Hyper-params
 MAX_VOCAB = 10_000
 MAX_LEN   = 200
 EMB_DIM   = 128
 
-# 3) Rebuild model
 model = Sequential([
     Embedding(input_dim=MAX_VOCAB, output_dim=EMB_DIM, input_length=MAX_LEN),
     Bidirectional(LSTM(64, return_sequences=True, dropout=0.2, recurrent_dropout=0.2)),
@@ -26,11 +23,9 @@ model = Sequential([
 ])
 model.compile(optimizer=Adam(1e-3), loss='binary_crossentropy', metrics=['accuracy'])
 
-# ── BUILD & LOAD WEIGHTS ─────────────────────────────────────────────────────────
-model.build(input_shape=(None, MAX_LEN))              # ensure the model is built
-model.load_weights('sentiment_rnn1.h5')            # weights-only file from training
+model.build(input_shape=(None, MAX_LEN))             
+model.load_weights('sentiment_rnn1.h5')          
 
-# 4) Streamlit UI
 st.title("IMDb Sentiment Analysis")
 review = st.text_area("Enter a movie review:")
 
